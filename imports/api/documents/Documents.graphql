@@ -1,0 +1,4 @@
+type Document {
+  _id: String!
+  name: String!
+}
