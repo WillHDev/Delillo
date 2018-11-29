@@ -23,11 +23,14 @@ const hiQuery = gql`
     staff {
       _id
       name
+      img
+      largeImg
     }
   }
 `;
 
 const App = ({ data }) => {
+  console.log('data', data);
   if (data.loading) return null;
   return (
     <div className="app-container">

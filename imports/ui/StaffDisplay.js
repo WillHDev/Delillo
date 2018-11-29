@@ -6,11 +6,17 @@ export default class StaffDisplay extends Component {
         return (
             <div className="staff-display-container">
                 <ul>
-                    {this.props.data.staff.map(staff => (
-                        <li key={staff._id}>{staff.name}</li>
-                    ))}
+                    {this.props.data.staff.map(staff => {
+                        console.log('staff', staff);
+                        return (
+                            <li key={staff._id}>
+                                <h4> {staff.name}</h4>
+                                <img width="200" src={staff.img} alt={staff.img} />
+                            </li>
+                        )
+                    })}
                 </ul>
             </div>
         )
     }
-}
+} 

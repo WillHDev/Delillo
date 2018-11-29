@@ -19,31 +19,39 @@ class StaffForm extends React.Component {
         largeImg: "",
         name: ""
     };
-    uploadImage = async e => {
+    uploadFile = async e => {
         const files = e.target.files;
+        console.log("hit")
         const data = new FormData();
         data.append('file', files[0]);
         data.append('upload_preset', 'scoodle');
 
-        const res = await fetch('https://res.cloudinary.com/v1_1/dx7xupqyp/image/upload/', {
+        const res = await fetch('https://api.cloudinary.com/v1_1/dx7xupqyp/image/upload', {
             method: 'POST',
             body: data,
         });
         const file = await res.json();
+        console.log(file);
         this.setState({
             img: file.secure_url,
             largeImg: file.eager[0].secure_url,
         });
+        console.log(this.state.img, this.state.largeImg)
     }
 
-    submitForm = () => {
-        e.preventDefault();
-        this.props.createStaff({
-            variables: {
-                name: this.name.value,
-                img: this.image.value
-            }
+    handleChange = e => {
+        const { name, type, value } = e.target;
+        const val = type === 'number' ? parseFloat(value) : value;
+        this.setState({ [name]: val });
+        console.log(this.state.name);
+    };
 
+    submitForm = (e) => {
+        e.preventDefault();
+
+        console.log(this.state);
+        this.props.createStaff({
+            variables: this.state
         }).then(({ data }) => {
             this.props.refetch()
         }).catch(error => {
@@ -54,23 +62,33 @@ class StaffForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.submitForm}>
-                <label htmlFor="name">
-                    Name
+                <fieldset>
+                    <label htmlFor="name">
+                        Name
                 <input
-                        type="text"
-                        ref={input => (this.name = input)}
-                        required />
-                </label>
-                <label htmlFor="name">
-                    Photo
+                            name="name"
+                            id="name"
+                            type="text"
+                            placeholder="Enter Staff's Name..."
+                            ref={input => (this.name = input)}
+                            onChange={this.handleChange}
+                            required />
+                    </label>
+                    <label htmlFor="file">
+                        Photo
                 <input
-                        type="file"
-                        placeholder="Choose a photo..."
-                        ref={input => (this.image = input)}
-                        required
-                        onChange={this.uploadFile} />
-                </label>
-                <button type="submit">Submit</button>
+                            name="file"
+                            id="file"
+                            type="file"
+                            placeholder="Choose a Photo..."
+                            required
+                            onChange={this.uploadFile} />
+                        {this.state.image && (
+                            <img width="200" src={this.state.img} alt="Upload Preview" />
+                        )}
+                    </label>
+                    <button type="submit">Submit</button>
+                </fieldset>
             </form>
         )
     }
@@ -80,3 +98,10 @@ class StaffForm extends React.Component {
 export default graphql(createStaff, {
     name: "createStaff"
 })(StaffForm)
+
+//ref={input => (this.img = input)}
+
+//mutation {createStaff(name: "Lucy") {
+//     name
+// }
+// }
