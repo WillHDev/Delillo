@@ -12,6 +12,7 @@ type Query {
     }
 `;
 
+
 const testResolvers = {
   Query: {
     hi() {
@@ -19,10 +20,10 @@ const testResolvers = {
     }
   }
 };
+
 const resolvers = merge(testResolvers, StaffResolvers);
 
 const typeDefs = [testSchema, StaffSchema];
-
 
 //make executable schema replacement
 const server = new ApolloServer({

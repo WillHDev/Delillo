@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
     margin: 0 auto;
+    background-color: #ffcb18;
 }
 
 .app-container {
@@ -11,11 +12,11 @@ font-family: 'Raleway', sans-serif;
 .header-card {
     
     font-family: 'Raleway', sans-serif;
-    background-color: #fffaeb;
+    background-color: #fcf8e4;
     border-radius: 50px;
     margin-left: auto;
     margin-right: auto;
-    background: white;
+    background: #fcf8e4;
     text-align: center;
     padding: 30px 50px;
     box-shadow: var(--shadow);

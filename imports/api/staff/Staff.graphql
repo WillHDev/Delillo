@@ -7,4 +7,5 @@ type Staff {
 
 type Mutation {
   createStaff(name: String!, img: String!, largeImg: String!): Staff
+deleteStaff(_id: String!): Staff
 }

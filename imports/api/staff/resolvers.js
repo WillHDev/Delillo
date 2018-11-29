@@ -22,7 +22,13 @@ export default {
         largeImg
       })
       return Staff.findOne({ staffId })
-    }
+    },
+
+    // deleteStaff(obj, { _id }, ctx) {
+    //   const staff = Staff.findOne({ _id })
+    //   Staff.deleteItem({ _id })
+    //   return staff;
+    // }
   }
 };
 

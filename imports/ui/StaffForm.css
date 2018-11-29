@@ -21,8 +21,8 @@ input[type=text], select {
 
   input[type=file] {
     width: 40%;
-    background-color: white;
-    color: white;
+    background-color: #fcf8e4;
+    color: #fcf8e4;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
