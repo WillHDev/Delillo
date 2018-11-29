@@ -1,5 +1,18 @@
 .staff-display-container {
+    height: 80vh;
+}
+
+ul {
     display: flex;
     width: 66%;
     flex-direction: row;
+    align-items: flex-end;
 }
+
+li {
+    list-style: none;
+    display: inline-block;
+    width: calc(100% / 3);
+    height: 120px;
+    text-align: center;
+  }

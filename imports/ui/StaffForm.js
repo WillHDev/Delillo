@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
-
+import './StaffForm.css';
 
 //apollo/string query vs. mutation vs. what we're doing
 const createStaff = gql`
