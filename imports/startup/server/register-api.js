@@ -12,6 +12,8 @@ type Query {
     }
 `;
 
+
+
 const testResolvers = {
   Query: {
     hi() {
@@ -20,7 +22,6 @@ const testResolvers = {
   }
 
 };
-
 const resolvers = merge(testResolvers, DocumentsResolvers);
 
 const typeDefs = [testSchema, DocumentsSchema];

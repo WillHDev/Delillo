@@ -3,6 +3,7 @@ import { graphql } from "react-apollo";
 import { Accounts } from "meteor/accounts-base";
 import ApolloClient from "apollo-boost";
 import gql from "graphql-tag";
+import StaffForm from './StaffForm'
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -34,6 +35,7 @@ const App = ({ data }) => {
           <li key={doc._id}>{doc.name}</li>
         ))}
       </ul>
+      <StaffForm refetch={data.refetch} />
     </div>
   );
 };
