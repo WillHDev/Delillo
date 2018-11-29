@@ -1,14 +1,14 @@
-import DocumentsSchema from "../../api/documents/Documents.graphql";
+import StaffSchema from "../../api/staff/Staff.graphql";
 import { ApolloServer, gql } from "apollo-server-express";
 import { WebApp } from "meteor/webapp";
 import { getUser } from "meteor/apollo";
-import DocumentsResolvers from "../../api/documents/resolvers";
+import StaffResolvers from "../../api/staff/resolvers";
 import merge from "lodash/merge";
 
 const testSchema = `
 type Query {
     hi: String
-  documents: [Document]
+  staff: [Staff]
     }
 `;
 
@@ -17,14 +17,14 @@ type Query {
 const testResolvers = {
   Query: {
     hi() {
-      return "Hello Master Will";
+      return "Scoodle";
     }
   }
 
 };
-const resolvers = merge(testResolvers, DocumentsResolvers);
+const resolvers = merge(testResolvers, StaffResolvers);
 
-const typeDefs = [testSchema, DocumentsSchema];
+const typeDefs = [testSchema, StaffSchema];
 
 //make executable schema replacement
 const server = new ApolloServer({

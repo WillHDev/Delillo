@@ -1,4 +1,4 @@
-import Documents from './documents'
+import Staff from './staff'
 // need fetch since find returns a cursor, a bunch of
 //things we dont need
 
@@ -10,16 +10,18 @@ import Documents from './documents'
 
 export default {
   Query: {
-    documents() {
-      return Documents.find({}).fetch()
+    staff() {
+      return Staff.find({}).fetch()
     }
   },
   Mutation: {
-    createStaff(obj, { name }, ctx) {
-      const staffId = Documents.insert({
-        name
+    createStaff(obj, { name, img, largeImg }, ctx) {
+      const staffId = Staff.insert({
+        name,
+        img,
+        largeImg
       })
-      return Documents.findOne({ staffId })
+      return Staff.findOne({ staffId })
     }
   }
 };

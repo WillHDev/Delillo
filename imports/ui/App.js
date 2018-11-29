@@ -20,7 +20,7 @@ const client = new ApolloClient({
 const hiQuery = gql`
   {
     hi
-    documents {
+    staff {
       _id
       name
     }

@@ -6,8 +6,8 @@ export default class StaffDisplay extends Component {
         return (
             <div className="staff-display-container">
                 <ul>
-                    {this.props.data.documents.map(doc => (
-                        <li key={doc._id}>{doc.name}</li>
+                    {this.props.data.staff.map(staff => (
+                        <li key={staff._id}>{staff.name}</li>
                     ))}
                 </ul>
             </div>

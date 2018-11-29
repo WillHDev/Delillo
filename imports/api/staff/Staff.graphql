@@ -1,0 +1,10 @@
+type Staff {
+  _id: String!
+  name: String!
+  img: String!
+  largeImg: String!
+}
+
+type Mutation {
+  createStaff(name: String!, img: String!, largeImg: String!): Staff
+}
