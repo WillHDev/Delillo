@@ -1,0 +1,8 @@
+type Document {
+  _id: String!
+  name: String!
+}
+
+type Mutation {
+  createStaff(name: String!): Document
+}

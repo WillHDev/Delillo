@@ -1,5 +1,46 @@
 import React from "react";
+import { graphql } from "react-apollo";
+import { Accounts } from "meteor/accounts-base";
+import ApolloClient from "apollo-boost";
+import gql from "graphql-tag";
+import StaffForm from './StaffForm'
+import './App.css'
+import StaffDisplay from "./StaffDisplay";
 
-const App = () => <h1>Hello</h1>;
+const client = new ApolloClient({
+  uri: "/graphql",
+  request: operation =>
+    operation.setContext(() => ({
+      headers: {
+        authorization: Accounts._storedLoginToken()
+      }
+    }))
+});
 
-export default App;
+const hiQuery = gql`
+  {
+    hi
+    documents {
+      _id
+      name
+    }
+  }
+`;
+
+const App = ({ data }) => {
+  if (data.loading) return null;
+  return (
+    <div className="app-container">
+      <div>
+        <div className="header-card">
+          <h1>{data.hi}</h1>
+        </div>
+
+        <StaffDisplay data={data} />
+        <StaffForm refetch={data.refetch} />
+      </div>
+    </div>
+  );
+};
+
+export default graphql(hiQuery)(App);
