@@ -28,12 +28,19 @@ export default class Index extends Component {
           <h1>Scoodle</h1>
         </div>
         <Sidebar
-          sidebar={<b>Sidebar content</b>}
+          sidebar={
+            <div>
+              <a href="/" className="sidebar-link">Home</a>
+              <a href="/schedule" className="sidebar-link">Schedule</a>
+              <a href="/addStaff" className="sidebar-link">Add Staff</a>
+            </div>
+          }
           open={this.state.sidebarOpen}
           onSetOpen={this.onSetSidebarOpen}
           styles={{ sidebar: { background: "white" } }}
+          className="sidebar"
         >
-          <div onClick={() => this.onSetSidebarOpen(true)}>
+          <div onClick={() => this.onSetSidebarOpen(true)} >
             <FaAlignJustify className="theme" />
           </div>
         </Sidebar>

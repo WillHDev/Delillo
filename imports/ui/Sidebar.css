@@ -1,0 +1,13 @@
+.sidebar-link {
+    display: inline-block;
+    padding: 16px 0px;
+        color: rgb(117, 117, 117);
+    background-color: #ffcb18;
+    text-decoration: none;
+    margin: 10px;
+}
+
+.sidebar {
+    background-color: #ffcb18;
+    text-decoration: none;
+}
