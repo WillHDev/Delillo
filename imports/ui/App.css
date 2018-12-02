@@ -1,4 +1,4 @@
- .app-container, .header-card{
+ .app-container, .header-card, .theme {
     box-sizing: border-box;
     margin: 0 auto;
     background-color: #ffcb18;
