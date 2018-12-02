@@ -8,4 +8,14 @@ type Staff {
 type Mutation {
   createStaff(name: String!, img: String!, largeImg: String!): Staff
 deleteStaff(_id: String!): Staff
+createShift(_id: String! type: String! start: String! end: String! allDay: Boolean!): Shift
+deleteShift(_id: String!): Shift
+}
+
+type Shift {
+  _id: String!
+  type: String!
+  start: String!
+  end: String!
+  allDay: Boolean!
 }

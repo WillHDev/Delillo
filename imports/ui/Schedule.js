@@ -13,17 +13,17 @@ const staffShifts =
     [
         {
             title: "Morning Shift",
-            start: "2018-12-22T07:00:00",
-            end: "2018-12-22T09:00:00",
+            end: new Date('December 10, 2018 11:00:00'),
+            start: new Date('December 10, 2018 13:00:00'),
             allDay: false,
-            resource: "lemon"
+
         },
         {
             title: "Morning Shift",
-            start: "2018-12-23T07:00:00",
-            end: "2018-12-23T09:00:00",
+            end: new Date('December 22, 2018 11:00:00'),
+            start: new Date('December 22, 2018 13:00:00'),
             allDay: false,
-            resource: "lemon"
+
         }
     ]
 

@@ -1,4 +1,5 @@
 import Staff from './staff'
+import Shifts from './shifts'
 // need fetch since find returns a cursor, a bunch of
 //things we dont need
 
@@ -12,6 +13,9 @@ export default {
   Query: {
     staff() {
       return Staff.find({}).fetch()
+    },
+    shifts() {
+      return Shifts.find({}).fetch()
     }
   },
   Mutation: {
@@ -23,7 +27,12 @@ export default {
       })
       return Staff.findOne({ staffId })
     },
-
+    createShift(obj, { start, end, type, allDay }, ctx) {
+      const shiftId = Shifts.insert({
+        start, end, type, allDay
+      })
+      return Shifts.findOne({ shiftId })
+    }
     // deleteStaff(obj, { _id }, ctx) {
     //   const staff = Staff.findOne({ _id })
     //   Staff.deleteItem({ _id })

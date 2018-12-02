@@ -9,6 +9,7 @@ const testSchema = `
 type Query {
     hi: String
   staff: [Staff]
+  shifts: [Shift]
     }
 `;
 
@@ -20,6 +21,7 @@ const testResolvers = {
     }
   }
 };
+
 
 const resolvers = merge(testResolvers, StaffResolvers);
 
@@ -38,6 +40,7 @@ server.applyMiddleware({
   app: WebApp.connectHandlers,
   path: "/graphql"
 });
+
 
 WebApp.connectHandlers.use("/graphql", (req, res) => {
   if (req.method === "GET") {
