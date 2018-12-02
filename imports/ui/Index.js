@@ -1,8 +1,8 @@
 import './App.css'
 import App from './App';
-import Schedule from './Schedule';
+import AddStaff from './AddStaff';
 import React, { Component } from 'react'
-//import Sidebar from 'react-sidebar';
+import Schedule from './Schedule'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 export default class Index extends Component {
 
@@ -16,6 +16,7 @@ export default class Index extends Component {
         <Router>
           <Switch>
             <Route path="/" exact component={App} />
+            <Route path="/addStaff" exact component={AddStaff} />
             <Route path="/schedule" exact component={Schedule} />
           </Switch>
         </Router>

@@ -1,4 +1,4 @@
-* {
+ .app-container, .header-card{
     box-sizing: border-box;
     margin: 0 auto;
     background-color: #ffcb18;

@@ -6,11 +6,8 @@ import gql from "graphql-tag";
 import StaffForm from './StaffForm'
 import './App.css'
 import StaffDisplay from "./StaffDisplay";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { withRouter } from "react-router";
-import Schedule from './Schedule';
 import Sidebar from "react-sidebar";
-// import Index from './Index';
 
 const client = new ApolloClient({
     uri: "/graphql",
@@ -37,16 +34,10 @@ const App = ({ loading, staff, refetch }) => {
 
     if (loading) return null;
     return (
-
-        <div className="app-container">
-
-
+        <div >
             <StaffDisplay staff={staff} />
             <StaffForm refetch={refetch} />
-
         </div>
-
-
     );
 };
 
