@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import { graphql } from "react-apollo";
 import { Accounts } from "meteor/accounts-base";
 import ApolloClient from "apollo-boost";
@@ -6,20 +6,25 @@ import gql from "graphql-tag";
 import StaffForm from './StaffForm'
 import './App.css'
 import StaffDisplay from "./StaffDisplay";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { withRouter } from "react-router";
+import Schedule from './Schedule';
+import Sidebar from "react-sidebar";
+// import Index from './Index';
 
 const client = new ApolloClient({
-  uri: "/graphql",
-  request: operation =>
-    operation.setContext(() => ({
-      headers: {
-        authorization: Accounts._storedLoginToken()
-      }
-    }))
+    uri: "/graphql",
+    request: operation =>
+        operation.setContext(() => ({
+            headers: {
+                authorization: Accounts._storedLoginToken()
+            }
+        }))
 });
 
-const hiQuery = gql`
+const staffQuery = gql`
   {
-    hi
+    
     staff {
       _id
       name
@@ -28,22 +33,28 @@ const hiQuery = gql`
     }
   }
 `;
+const App = ({ loading, staff, refetch }) => {
 
-const App = ({ data }) => {
-  console.log('data', data);
-  if (data.loading) return null;
-  return (
-    <div className="app-container">
-      <div>
-        <div className="header-card">
-          <h1>{data.hi}</h1>
+    if (loading) return null;
+    return (
+
+        <div className="app-container">
+
+
+            <StaffDisplay staff={staff} />
+            <StaffForm refetch={refetch} />
+
         </div>
 
-        <StaffDisplay data={data} />
-        <StaffForm refetch={data.refetch} />
-      </div>
-    </div>
-  );
+
+    );
 };
 
-export default graphql(hiQuery)(App);
+export default graphql(staffQuery, {
+    props: ({ data }) => ({ ...data })
+})(withRouter(App));
+
+// <Switch>
+// <Route exact path="/schedule" component={Schedule} />
+
+// </Switch>

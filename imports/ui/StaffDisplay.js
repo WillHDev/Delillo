@@ -6,7 +6,7 @@ export default class StaffDisplay extends Component {
         return (
             <div className="staff-display-container">
                 <ul>
-                    {this.props.data.staff.map(staff => {
+                    {this.props.staff.map(staff => {
                         console.log('staff', staff);
                         return (
                             <li key={staff._id}>
