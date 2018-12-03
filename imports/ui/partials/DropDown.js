@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
 
 const styles = theme => ({
     root: {
@@ -29,42 +30,33 @@ const styles = theme => ({
 class DropDown extends React.Component {
     state = {
         age: '',
-        name: 'hai',
+        staff: '',
         labelWidth: 0,
     };
 
-    componentDidMount() {
-        // this.setState({
-        //     labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
-        // });
-    }
-
     handleChange = event => {
         this.setState({ [event.target.name]: event.target.value });
-        this.props.onChange(event.target);
+        this.props.onChange(event);
     };
 
     render() {
 
         let menuItems;
         menuItems = this.props.menuItems.map(item => {
-            return <MenuItem value={item} key={item}>{item}</MenuItem>
+            return <option value={item} key={item}>{item}</option>
         })
         console.log(this.props.menuItems);
         return (
-            <Select
-                type="text"
-                name="staff"
-                value={this.state.age}
-                onChange={this.handleChange}
-                inputProps={{
-                    name: 'age',
-                    id: 'age-simple',
-                }}
-            >
-
-                {menuItems}
-            </Select>
+            <div>
+                <InputLabel htmlFor="name-native-disabled">Name</InputLabel>
+                <NativeSelect
+                    value={this.state.staff}
+                    onChange={this.handleChange}
+                    input={<Input name="staff" id="name-native-disabled" />}
+                >
+                    {menuItems}
+                </NativeSelect>
+            </div>
         );
     }
 }
@@ -74,3 +66,4 @@ DropDown.propTypes = {
 };
 
 export default withStyles(styles)(DropDown);
+

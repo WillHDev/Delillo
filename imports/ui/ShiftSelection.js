@@ -26,10 +26,15 @@ class ShiftSelection extends React.Component {
         type: 'morning'
     };
     handleChange = e => {
-        const { name, type, value } = e.target;
-        const val = type === 'number' ? parseFloat(value) : value;
-        this.setState({ [name]: val });
-        console.log(this.state, 'state');
+        //const { name, type, value } = e.target;
+        console.log(e);
+        // const { value, name } = e.target
+        // console.log('value, name', value, name);
+        // console.log(e.target);
+        //const val = type === 'number' ? parseFloat(value) : value;
+
+        // this.setState({ [name]: value });
+
 
     };
 
@@ -48,7 +53,7 @@ class ShiftSelection extends React.Component {
     }
     render() {
         const { classes } = this.props;
-        console.log(classes);
+
         return (
             <form onSubmit={this.submitForm} className={classes.container} noValidate>
 
