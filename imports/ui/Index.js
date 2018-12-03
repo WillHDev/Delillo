@@ -3,10 +3,10 @@ import App from './App';
 import AddStaff from './AddStaff';
 import React, { Component } from 'react'
 import Schedule from './Schedule'
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Sidebar from "react-sidebar";
 import { FaAlignJustify } from 'react-icons/fa';
-
+import ShiftSelectionContainer from './ShiftSelectionContainer';
 export default class Index extends Component {
 
 
@@ -25,32 +25,47 @@ export default class Index extends Component {
     return (
       <div className="app-container">
         <div className="header-card">
-          <h1>Scoodle</h1>
-        </div>
-        <Sidebar
-          sidebar={
+          <Sidebar
+            sidebar={
+              <div>
+                <li><a href="/" className="sidebar-link">Home</a>  </li>
+                <li> <a href="/schedule" className="sidebar-link">Schedule</a> </li>
+                <li> <a href="/addStaff" className="sidebar-link">Add Staff</a> </li>
+                <li> <a href="/shiftSelection" className="sidebar-link">Add a Shift</a> </li>
+              </div>
+            }
+            open={this.state.sidebarOpen}
+            onSetOpen={this.onSetSidebarOpen}
+            styles={{ sidebar: { background: "white" } }}
+            className="sidebar"
+          >
             <div>
-              <a href="/" className="sidebar-link">Home</a>
-              <a href="/schedule" className="sidebar-link">Schedule</a>
-              <a href="/addStaff" className="sidebar-link">Add Staff</a>
+              <div className="header-icon" onClick={() => {
+                console.log('Hit');
+                this.onSetSidebarOpen(true)
+              }}>
+                <FaAlignJustify className="burger-icon" />
+              </div>
             </div>
-          }
-          open={this.state.sidebarOpen}
-          onSetOpen={this.onSetSidebarOpen}
-          styles={{ sidebar: { background: "white" } }}
-          className="sidebar"
-        >
-          <div onClick={() => this.onSetSidebarOpen(true)} >
-            <FaAlignJustify className="theme" />
-          </div>
-        </Sidebar>
+          </Sidebar>
+
+
+          <h1 className="title" >Scoodle</h1>
+
+
+
+        </div>
+
+
+
 
         <Router>
-          <Switch>
+          <>
             <Route path="/" exact component={App} />
             <Route path="/addStaff" exact component={AddStaff} />
             <Route path="/schedule" exact component={Schedule} />
-          </Switch>
+            <Route path="/shiftSelection" exact component={ShiftSelectionContainer} />
+          </>
         </Router>
       </div>
     )

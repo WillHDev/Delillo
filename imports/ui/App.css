@@ -18,6 +18,27 @@ font-family: 'Raleway', sans-serif;
     margin-right: auto;
     background: #fcf8e4;
     text-align: center;
-    padding: 30px 50px;
+    padding: 7px ;
     box-shadow: var(--shadow);
+}
+
+.burger-icon {
+    padding-top: 20px;
+    margin-bottom: -75px;
+    height: 2em;
+    width: 2em;
+}
+
+.header-icon {
+    width: 20%;
+  
+}
+.title {
+    text-align: center;
+    width: 100%;
+    font-size: 50px;
+}
+
+.masonry-layout {
+    max-width: 800px;
 }

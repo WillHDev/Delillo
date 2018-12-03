@@ -25,7 +25,7 @@ export default class StaffDisplay extends Component {
         return (
             <div className="staff-display-container">
                 <ul>
-                    <MasonryLayout id="masonry-layout">
+                    <MasonryLayout id="masonry-layout" className="masonry-layout">
                         {this.props.staff.map((staff, i) => {
                             console.log('staff', staff);
                             return (

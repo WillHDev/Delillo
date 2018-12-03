@@ -4,10 +4,14 @@
         color: rgb(117, 117, 117);
     background-color: #ffcb18;
     text-decoration: none;
-    margin: 10px;
+padding: 20px
 }
 
 .sidebar {
     background-color: #ffcb18;
     text-decoration: none;
+   
+}
+.sidebar-container {
+    padding: 20px;
 }
