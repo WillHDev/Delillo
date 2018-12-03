@@ -13,6 +13,7 @@ import Select from '@material-ui/core/Select';
 
 const styles = theme => ({
     root: {
+
         display: 'flex',
         flexWrap: 'wrap',
     },
@@ -33,20 +34,27 @@ class DropDown extends React.Component {
     };
 
     componentDidMount() {
-        this.setState({
-            labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
-        });
+        // this.setState({
+        //     labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
+        // });
     }
 
     handleChange = event => {
         this.setState({ [event.target.name]: event.target.value });
+        this.props.onChange(event.target);
     };
 
     render() {
-        // const { classes } = this.props;
 
+        let menuItems;
+        menuItems = this.props.menuItems.map(item => {
+            return <MenuItem value={item} key={item}>{item}</MenuItem>
+        })
+        console.log(this.props.menuItems);
         return (
             <Select
+                type="text"
+                name="staff"
                 value={this.state.age}
                 onChange={this.handleChange}
                 inputProps={{
@@ -54,12 +62,8 @@ class DropDown extends React.Component {
                     id: 'age-simple',
                 }}
             >
-                <MenuItem value="">
-                    <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+
+                {menuItems}
             </Select>
         );
     }

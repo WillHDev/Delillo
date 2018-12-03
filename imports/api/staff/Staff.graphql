@@ -18,4 +18,5 @@ type Shift {
   start: String!
   end: String!
   allDay: Boolean!
+  staff: Staff
 }
