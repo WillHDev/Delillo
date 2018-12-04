@@ -14,20 +14,28 @@
     "apollo-server-express": "^2.2.2",
     "body-parser": "^1.18.3",
     "carbon-components": "^9.59.0",
+    "carbon-components-react": "^6.55.5",
+    "carbon-icons": "^7.0.7",
     "express": "^4.16.4",
     "graphql": "^14.0.2",
     "graphql-server-express": "^1.4.0",
     "graphql-tag": "^2.10.0",
     "graphql-tools": "^4.0.3",
+    "jquery": "^3.3.1",
     "lodash": "^4.17.11",
+    "material-ui": "^0.20.2",
     "meteor-node-stubs": "^0.4.1",
     "moment": "^2.22.2",
+    "rc-time-picker": "^3.4.0",
     "react": "^16.6.3",
     "react-animations": "^1.0.0",
     "react-apollo": "^2.3.1",
     "react-big-calendar": "^0.20.2",
+    "react-bootstrap-datetimepicker": "0.0.22",
+    "react-datepicker": "^2.0.0",
     "react-dom": "^16.6.3",
     "react-icons": "^3.2.2",
+    "react-input-moment": "^1.7.10",
     "react-masonry-layout": "^0.4.0",
     "react-pose": "^4.0.2",
     "react-router": "^4.3.1",
@@ -37,6 +45,7 @@
     "styled-components": "^4.1.2"
   },
   "devDependencies": {
-    "babel-plugin-inline-import": "^3.0.0"
+    "babel-plugin-inline-import": "^3.0.0",
+    "webpack": "^4.26.1"
   }
 }
