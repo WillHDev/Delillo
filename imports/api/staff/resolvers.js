@@ -27,9 +27,9 @@ export default {
       })
       return Staff.findOne({ staffId })
     },
-    createShift(obj, { start, end, type, allDay }, ctx) {
+    createShift(obj, { start, end, type, allDay, title, date }, ctx) {
       const shiftId = Shifts.insert({
-        start, end, type, allDay
+        start, end, type, allDay, title, date
       })
       return Shifts.findOne({ shiftId })
     }
