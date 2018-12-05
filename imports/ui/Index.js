@@ -7,6 +7,9 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Sidebar from "react-sidebar";
 import { FaAlignJustify } from 'react-icons/fa';
 import ShiftSelectionContainer from './ShiftSelectionContainer';
+import DropdownMenu, { DropdownItemGroup, DropdownItem, DropdownMenuStateless } from '@atlaskit/dropdown-menu';
+import Timeslots from './Timeslots';
+
 export default class Index extends Component {
 
 
@@ -25,29 +28,23 @@ export default class Index extends Component {
     return (
       <div className="app-container">
         <div className="header-card">
-          <Sidebar
-            sidebar={
-              <div>
-                <li><a href="/" className="sidebar-link">Home</a>  </li>
-                <li> <a href="/schedule" className="sidebar-link">Schedule</a> </li>
-                <li> <a href="/addStaff" className="sidebar-link">Add Staff</a> </li>
-                <li> <a href="/shiftSelection" className="sidebar-link">Add a Shift</a> </li>
-              </div>
-            }
-            open={this.state.sidebarOpen}
-            onSetOpen={this.onSetSidebarOpen}
-            styles={{ sidebar: { background: "white" } }}
-            className="sidebar"
-          >
-            <div>
-              <div className="header-icon" onClick={() => {
-                console.log('Hit');
-                this.onSetSidebarOpen(true)
-              }}>
-                <FaAlignJustify className="burger-icon" />
-              </div>
-            </div>
-          </Sidebar>
+          <div style={{ margin: '20px' }}>
+            <DropdownMenu
+              trigger="Menu"
+              triggerType="button"
+              shouldFlip={false}
+              position="right middle"
+              onOpenChange={e => console.log('dropdown opened', e)}
+            >
+              <DropdownItemGroup>
+                <DropdownItem href="/">Home</DropdownItem>
+                <DropdownItem href="/schedule">Schedule</DropdownItem>
+                <DropdownItem href="/shiftSelection">Add A Shift</DropdownItem>
+                <DropdownItem href="/addStaff">Add Staff</DropdownItem>
+              </DropdownItemGroup>
+            </DropdownMenu>
+          </div>
+
 
 
           <h1 className="title" >Scoodle</h1>
@@ -65,6 +62,7 @@ export default class Index extends Component {
             <Route path="/addStaff" exact component={AddStaff} />
             <Route path="/schedule" exact component={Schedule} />
             <Route path="/shiftSelection" exact component={ShiftSelectionContainer} />
+            <Route path="/timeSlots" exact component={Timeslots} />
           </>
         </Router>
       </div>
@@ -74,3 +72,27 @@ export default class Index extends Component {
 
 
 // export default withRouter(Index);
+
+{/* <Sidebar
+sidebar={
+  <div>
+    <li><a href="/" className="sidebar-link">Home</a>  </li>
+    <li> <a href="/schedule" className="sidebar-link">Schedule</a> </li>
+    <li> <a href="/addStaff" className="sidebar-link">Add Staff</a> </li>
+    <li> <a href="/shiftSelection" className="sidebar-link">Add a Shift</a> </li>
+  </div>
+}
+open={this.state.sidebarOpen}
+onSetOpen={this.onSetSidebarOpen}
+styles={{ sidebar: { background: "white" } }}
+className="sidebar"
+>
+<div>
+  <div className="header-icon" onClick={() => {
+    console.log('Hit');
+    this.onSetSidebarOpen(true)
+  }}>
+    <FaAlignJustify className="burger-icon" />
+  </div>
+</div>
+</Sidebar> */}

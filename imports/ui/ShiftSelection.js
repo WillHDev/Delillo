@@ -5,9 +5,9 @@ import TextField from '@material-ui/core/TextField';
 import DropDown from './partials/DropDown';
 import './ShiftSelection.css';
 import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from 'react-datepicker';
+//import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import { TimePicker } from '@atlaskit/datetime-picker';
+import {  DatePicker, TimePicker } from '@atlaskit/datetime-picker';
 
 
 const styles = theme => ({
@@ -26,16 +26,18 @@ class ShiftSelection extends React.Component {
     constructor() {
         super();
         this.state = {
-            date: new Date(),
-            moment: moment(),
-            start: moment(),
+            date: '',
+      
+            start: '',
+            
             end: '',
             allDay: false,
-            staff: '',
+            title: '',
             type: 'morning'
         };
-        this.handleChange = this.handleChange.bind(this);
+        
     }
+//this.handleChange = this.handleChange.bind(this);
 
     // handleChange = e => {
     //     //const { name, type, value } = e.target;
@@ -52,7 +54,8 @@ class ShiftSelection extends React.Component {
 
     submitForm = (e) => {
         e.preventDefault();
-
+const dateTime = this.state.date + ":" + this.state.start;
+console.log(dateTime)
         console.log(this.state);
         // this.props.createShift({
         //     variables: this.state
@@ -64,17 +67,56 @@ class ShiftSelection extends React.Component {
 
     }
 
-    customOnChange = field => (e, k, payload) => {
-        field.set('value', payload); // not sure about this
-
-    };
-    handleChange = (date) => {
+    handleChangeStaff = e => {
+ const staff = e.target.value
         // const { target: { name, value } } = event;
         // this.setState(() => ({ [name]: value }))
         this.setState({
-            date: date
+           title: staff
         });
     }
+    handleChangeDate = e => {
+const date = Date(e)
+
+
+               this.setState({
+                   date
+               });
+               console.log(this.state)
+           }
+           handleChangeStartTime = time => {
+              // const date =  Date(this.state.date)
+               const hours = time.slice(0, 2)
+               console.log('hours', hours);
+               const minutes = time.slice(3, 5)
+               console.log('minutes', minutes);
+const dateTest = new Date(this.state.date)
+dateTest.setHours(hours);
+dateTest.setMinutes(minutes, 0);
+
+console.log(dateTest);
+              
+                   this.setState({
+                       start: dateTest
+                   });
+               }
+               handleChangeEndTime = time => {
+                //const date =  Date(this.state.date)
+                const hours = time.slice(0, 2)
+                console.log('hours', hours);
+                const minutes = time.slice(3, 5)
+                console.log('minutes', minutes);
+ const dateTest = new Date(this.state.date)
+ dateTest.setHours(hours);
+ dateTest.setMinutes(minutes, 0);
+
+ console.log(dateTest);
+              
+                    this.setState({
+                        end: dateTest
+                    });
+                }
+            
     handleTimeChange = (value) => {
         console.log(value);
         this.setState({
@@ -84,50 +126,77 @@ class ShiftSelection extends React.Component {
 
     render() {
 
-        const { classes } = this.props;
+
+const { classes } = this.props;
 
         return (
             <form onSubmit={this.submitForm} className={classes.container} noValidate>
 
                 <fieldset>
-                    <label htmlFor="staff" className="label">
-                        Enter a Support
+                <h3>Choose a Support</h3>
+     
+      <DatePicker id="datepicker-1" name="date" onChange={this.handleChangeDate} />
 
-                    <TextField
-
-                            name="start"
-                            id="datetime-local"
-                            label="Shift Start"
-                            type="datetime-local"
-                            defaultValue="2018-12-24T6:30"
-                            className={classes.textField}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            onChange={this.handleChange}
-                        />
-                        <TextField
-                            name="end"
-                            id="datetime-local"
-                            label="Shift End"
-                            type="datetime-local"
-                            defaultValue="2018-12-24T9:30"
-                            className={classes.textField}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            onChange={this.handleChange}
-                        />
-                    </label>
-                    <DatePicker
-                        className="date-selector"
-                        selected={this.state.date}
-                        onChange={this.handleChange}
-                    />
+                   <br/>
 
       <TimePicker
         id="start"
-        onChange={this.onChange}
+        onChange={this.handleChangeStartTime}
+        selectProps={{ classNamePrefix: 'timepicker-select' }}
+        times={["00:00", "00:15", 
+        "00:30", "00:45",
+        "01:00", "01:15", 
+        "01:30", "01:45",
+        "02:00", "02:15", 
+        "02:30", "02:45",
+        "03:00", "03:15", 
+        "03:30", "03:45",
+        "04:00", "04:15", 
+        "04:30", "04:45",
+        "05:00", "05:15", 
+        "05:30", "05:45",
+        "06:00", "06:15", 
+        "06:30", "06:45",
+        "07:00", "07:15", 
+        "07:30", "07:45",
+        "08:00", "08:15", 
+        "08:30", "08:45",
+        "09:00", "09:15", 
+        "09:30", "09:45",
+        "10:00", "10:15", 
+        "10:30", "10:45",
+        "11:00", "11:15", 
+        "11:30", "11:45",
+        "12:00", "12:15", 
+        "12:30", "12:45",
+        "13:00", "13:15", 
+        "13:30", "13:45",
+        "14:00", "14:15", 
+        "14:30", "14:45",
+        "15:00", "15:15", 
+        "15:30", "15:45",
+        "16:00", "16:15", 
+        "16:30", "16:45",
+        "17:00", "17:15", 
+        "17:30", "17:45",
+        "18:00", "18:15", 
+        "18:30", "18:45",
+        "19:00", "19:15", 
+        "19:30", "19:45",
+        "20:00", "20:15", 
+        "20:30", "20:45",
+        "21:00", "21:15", 
+        "21:30", "21:45",
+        "22:00", "22:15", 
+        "22:30", "22:45",
+        "23:00", "23:15", 
+        "23:30", "23:45"
+         ]}
+      />
+    <br />
+<TimePicker
+        id="end"
+        onChange={this.handleChangeEndTime}
         selectProps={{ classNamePrefix: 'timepicker-select' }}
         times={["00:00", "00:15", 
         "00:30", "00:45",
@@ -188,7 +257,7 @@ class ShiftSelection extends React.Component {
                             <DropDown
                                 menuItems={["Lisa Rios", "Eric Patel", "Joyce Holden"]}
                                 name="staff"
-                                onChange={this.handleChange} />
+                                onChange={this.handleChangeStaff} />
                         </label>
                         <br />
                         <br />
@@ -216,3 +285,8 @@ ShiftSelection.propTypes = {
 // required
 // />
 
+{/* <DatePicker
+className="date-selector"
+selected={this.state.date}
+onChange={this.handleChange}
+/> */}
