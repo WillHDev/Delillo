@@ -22,8 +22,6 @@ const testResolvers = {
   }
 };
 
-
-
 const resolvers = merge(testResolvers, StaffResolvers);
 
 const typeDefs = [testSchema, StaffSchema];
@@ -48,3 +46,6 @@ WebApp.connectHandlers.use("/graphql", (req, res) => {
     res.end();
   }
 });
+
+
+//
