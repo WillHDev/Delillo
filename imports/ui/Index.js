@@ -9,6 +9,7 @@ import { FaAlignJustify } from 'react-icons/fa';
 import ShiftSelectionContainer from './ShiftSelectionContainer';
 import DropdownMenu, { DropdownItemGroup, DropdownItem, DropdownMenuStateless } from '@atlaskit/dropdown-menu';
 import Timeslots from './Timeslots';
+import ShiftDisplay from './ShiftDisplay';
 
 export default class Index extends Component {
 
@@ -60,7 +61,7 @@ export default class Index extends Component {
           <>
             <Route path="/" exact component={App} />
             <Route path="/addStaff" exact component={AddStaff} />
-            <Route path="/schedule" exact component={Schedule} />
+            <Route path="/schedule" exact component={ShiftDisplay} />
             <Route path="/shiftSelection" exact component={ShiftSelectionContainer} />
             <Route path="/timeSlots" exact component={Timeslots} />
           </>

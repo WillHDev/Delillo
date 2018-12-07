@@ -9,41 +9,7 @@ const localizer = BigCalendar.momentLocalizer(moment)
 
 
 
-const staffShifts =
-    [
-        {
-            title: "Morning Shift",
-            end: new Date('December 10, 2018 23:00:00'),
-            start: new Date('December 10, 2018 14:00:00'),
-            allDay: false,
 
-        },
-        {
-            title: "",
-            end: new Date('December 10, 2018 13:00:00'),
-            start: new Date('December 10, 2018 12:00:00'),
-            allDay: false,
-
-        },
-        {
-            title: "Lisa Rios, Donald Parr," + "    " + "Backland Rennings",
-            end: new Date('December 22, 2018 11:00:00'),
-            start: new Date('December 22, 2018 05:00:00'),
-            allDay: false,
-
-        },
-        {
-            title: "Snoobo",
-            end: new Date('December 4, 2018 19:00:00'),
-            start: new Date('December 4, 2018 05:00:00'),
-            allDay: false,
-
-            date: "Tue Dec 04 2018 20:13:20 GMT-0500 (Eastern Standard Time)",
-
-            type: "morning"
-        }
-
-    ]
 
 
 class Schedule extends Component {
@@ -66,17 +32,18 @@ class Schedule extends Component {
         console.log(newDate);
         // const date = Date("2018-12-04");
         // console.log(date);
+        // let shifts;
+        const { staffShifts } = this.props;
+        // shifts = staffShifts.map(shift => {
+        //     shift.start = moment(shift.start).format("MMMM D, YYYY HH:mm:ss");
+        //     shift.end = moment(shift.end).format("MMMM D, YYYY HH:mm:ss");
+        //     return shift;
+        // })
         return (
             <div className="schedule-container" >
-                <BigCalendar
-                    localizer={localizer}
-                    events={staffShifts}
-                    defaultView={BigCalendar.Views.WEEK}
-                    startAccessor="start"
-                    endAccessor="end"
-                    className="schedule"
-
-                />
+                {staffShifts.map(shift => {
+                    return <h6 key={shift._id}>{shift.title} + {shift.start} + {shift.end}</h6>
+                })}
             </div>
         )
     }
@@ -84,3 +51,12 @@ class Schedule extends Component {
 
 export default withRouter(Schedule);
 
+{/* <BigCalendar
+                    localizer={localizer}
+                    events={shifts}
+                    defaultView={BigCalendar.Views.WEEK}
+                    startAccessor="start"
+                    endAccessor="end"
+                    className="schedule"
+
+                /> */}

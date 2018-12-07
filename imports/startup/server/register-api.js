@@ -13,7 +13,6 @@ type Query {
     }
 `;
 
-
 const testResolvers = {
   Query: {
     hi() {
@@ -21,6 +20,8 @@ const testResolvers = {
     }
   }
 };
+
+
 
 const resolvers = merge(testResolvers, StaffResolvers);
 
@@ -34,6 +35,8 @@ const server = new ApolloServer({
     user: await getUser(req.headers.authorization)
   })
 });
+
+//
 
 server.applyMiddleware({
   app: WebApp.connectHandlers,

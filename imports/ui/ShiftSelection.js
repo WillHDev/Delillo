@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import DropDown from './partials/DropDown';
@@ -9,7 +11,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
 import {  DatePicker, TimePicker } from '@atlaskit/datetime-picker';
 
+const createShift = gql`
+mutation createShift($title: String!, $date: String!, $start: String!, $end: String!, $allDay: Boolean!, $type: String!) {
+    createShift(title: $title, type: $type, date: $date, start: $start, end: $end, allDay: $allDay) {
+        _id
+    }
 
+}
+`;
 const styles = theme => ({
     container: {
         display: 'flex',
@@ -55,17 +64,20 @@ class ShiftSelection extends React.Component {
     submitForm = (e) => {
         e.preventDefault();
 const dateTime = this.state.date + ":" + this.state.start;
-console.log(dateTime)
-        console.log(this.state);
-        // this.props.createShift({
-        //     variables: this.state
-        // }).then(({ data }) => {
-        //     this.props.refetch()
-        // }).catch(error => {
-        //     console.log(error)
-        // });
+
+        console.log('state', this.state);
+
+        this.props.createShift({
+            variables: this.state
+        }).catch(error => {
+            console.log(error)
+        });
 
     }
+
+    // .then(({ data }) => {
+    //     this.props.refetch()
+    // })
 
     handleChangeStaff = e => {
  const staff = e.target.value
@@ -272,9 +284,11 @@ ShiftSelection.propTypes = {
                     classes: PropTypes.object.isRequired,
             };
             
-            export default withStyles(styles)(ShiftSelection);
-            
-            
+            // export default withStyles(styles)(ShiftSelection);
+          
+            export default withStyles(styles)(graphql(createShift, {
+                name: "createShift"
+            })(ShiftSelection));
 //<input
 // placeholder="Name..."
 // name="name"
