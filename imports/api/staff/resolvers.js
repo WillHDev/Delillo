@@ -32,15 +32,15 @@ export default {
         start, end, type, allDay, title, date
       })
       return Shifts.findOne({ shiftId })
+    },
+
+    deleteShift(obj, { _id }, ctx) {
+      const staff = Staff.findOne({ _id })
+      Shifts.remove({ _id })
+      return staff;
     }
-    // deleteStaff(obj, { _id }, ctx) {
-    //   const staff = Staff.findOne({ _id })
-    //   Staff.deleteItem({ _id })
-    //   return staff;
-    // }
   }
 };
-
 
 //[
 //   { _id: "asbdjnk", name: "Important Read" },

@@ -21,3 +21,22 @@
 
 
 //   }
+
+// { 
+//     shifts{
+//       _id
+//       title
+//       type
+//       start
+//       end 
+
+//     }
+//     }
+
+//deleteAllShifts(where: {allDay: allDay}): [Shift]
+
+// ,
+//     deleteAllShifts(obj, payload, ctx) {
+//       Shifts.remove({});
+//       return 'success';
+//     }

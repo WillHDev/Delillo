@@ -13,41 +13,40 @@ type Query {
     }
 `;
 
+//
 const testResolvers = {
-  Query: {
-    hi() {
-      return "Scoodle";
+    Query: {
+        hi() {
+            return "Scoodle";
+        }
     }
-  }
 };
 
-
+//
 
 const resolvers = merge(testResolvers, StaffResolvers);
 
 const typeDefs = [testSchema, StaffSchema];
-
 //make executable schema replacement
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: async ({ req }) => ({
-    user: await getUser(req.headers.authorization)
-  })
+    typeDefs,
+    resolvers,
+    context: async ({ req }) => ({
+        user: await getUser(req.headers.authorization)
+    })
 });
+
 
 //
-
 server.applyMiddleware({
-  app: WebApp.connectHandlers,
-  path: "/graphql"
+    app: WebApp.connectHandlers,
+    path: "/graphql"
 });
 
-
 WebApp.connectHandlers.use("/graphql", (req, res) => {
-  if (req.method === "GET") {
-    res.end();
-  }
+    if (req.method === "GET") {
+        res.end();
+    }
 });
 
 

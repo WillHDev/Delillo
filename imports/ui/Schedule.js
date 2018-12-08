@@ -42,7 +42,8 @@ class Schedule extends Component {
         return (
             <div className="schedule-container" >
                 {staffShifts.map(shift => {
-                    return <h6 key={shift._id}>{shift.title} + {shift.start} + {shift.end}</h6>
+                    console.log(new Date(shift.end), shift.end)
+                    return <h6 key={shift._id}>{shift.title} + {shift.start} + {shift.end} +{shift.allDay}</h6>
                 })}
             </div>
         )

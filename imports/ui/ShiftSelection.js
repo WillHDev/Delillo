@@ -105,11 +105,13 @@ const date = Date(e)
 const dateTest = new Date(this.state.date)
 dateTest.setHours(hours);
 dateTest.setMinutes(minutes, 0);
-
+let dateFinal, dateFormat;
+dateFinal = moment.utc(dateTest).format("MMMM D, YYYY HH:mm:ss");
+dateFormat = dateFinal + ` GMT-0500 (Eastern Standard Time)`;
 console.log(dateTest);
               
                    this.setState({
-                       start: dateTest
+                       start: new Date(dateFormat)
                    });
                }
                handleChangeEndTime = time => {
@@ -121,11 +123,14 @@ console.log(dateTest);
  const dateTest = new Date(this.state.date)
  dateTest.setHours(hours);
  dateTest.setMinutes(minutes, 0);
-
+ let dateFinal, dateFormat;
+dateFinal = moment.utc(dateTest).format("MMMM D, YYYY HH:mm:ss")
+dateFormat = dateFinal + ` GMT-0500 (Eastern Standard Time)`;
+ //const newDate = moment(date).format("MMMM D, YYYY HH:mm:ss");
  console.log(dateTest);
               
                     this.setState({
-                        end: dateTest
+                        end: new Date(dateFormat)
                     });
                 }
             

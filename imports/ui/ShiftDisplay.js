@@ -26,7 +26,7 @@ const shiftQuery = gql`
 allDay
 start
 end
-type
+
  
     }
   }
@@ -35,6 +35,7 @@ type
 
 
 const ktaffShifts =
+
     [
         {
             title: "Morning Shift",
@@ -69,16 +70,20 @@ const ktaffShifts =
         }
 
     ]
+console.log('ktaffShifts', ktaffShifts);
 const ShiftDisplay = ({ loading, shifts, refetch }) => {
 
     if (loading) return null;
     console.log(shifts)
-    let staffShifts;
-    staffShifts = shifts.map(shift => {
-        shift.start = moment(shift.start).format("MMMM D, YYYY HH:mm:ss");
-        shift.end = moment(shift.end).format("MMMM D, YYYY HH:mm:ss");
-        return shift;
-    })
+    // let staffShifts;
+    // staffShifts = shifts.map(shift => {
+
+    //     shift.start = moment.utc(shift.start).format("MMM D, YYYY HH:mm:ss");
+    //     //shift.start = shift.start + ` GMT-0500 (Eastern Standard Time)`;
+    //     shift.end = moment(shift.end).format("MMM D, YYYY HH:mm:ss");
+    //     console.log('Start', shift.start)
+    //     return shift;
+    // })
     //     <ul>
     //     {shifts.map(shift => {
     //         return <li key={shift._id}><div> {shift.title}, {shift.start} </div></li>
