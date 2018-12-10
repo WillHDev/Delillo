@@ -27,7 +27,7 @@ export default class StaffDisplay extends Component {
                 <ul>
                     <MasonryLayout id="masonry-layout" className="masonry-layout">
                         {this.props.staff.map((staff, i) => {
-                            console.log('staff', staff);
+   
                             return (
                                 <FadeInUpDiv key={staff._id}>
                                     <div key={staff._id}>

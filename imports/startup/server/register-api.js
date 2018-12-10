@@ -20,11 +20,7 @@ const testResolvers = {
     }
   }
 };
-
-
-
 const resolvers = merge(testResolvers, StaffResolvers);
-
 const typeDefs = [testSchema, StaffSchema];
 
 //make executable schema replacement
@@ -50,5 +46,3 @@ WebApp.connectHandlers.use("/graphql", (req, res) => {
   }
 });
 
-
-//

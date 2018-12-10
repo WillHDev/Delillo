@@ -21,7 +21,6 @@ class StaffForm extends React.Component {
     };
     uploadFile = async e => {
         const files = e.target.files;
-        console.log("hit")
         const data = new FormData();
         data.append('file', files[0]);
         data.append('upload_preset', 'scoodle');
@@ -31,25 +30,20 @@ class StaffForm extends React.Component {
             body: data,
         });
         const file = await res.json();
-        console.log(file);
         this.setState({
             img: file.secure_url,
             largeImg: file.eager[0].secure_url,
         });
-        console.log(this.state.img, this.state.largeImg)
     }
 
     handleChange = e => {
         const { name, type, value } = e.target;
         const val = type === 'number' ? parseFloat(value) : value;
         this.setState({ [name]: val });
-        console.log(this.state.name);
     };
 
     submitForm = (e) => {
         e.preventDefault();
-
-        console.log(this.state);
         this.props.createStaff({
             variables: this.state
         }).then(({ data }) => {

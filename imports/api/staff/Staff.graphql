@@ -19,7 +19,7 @@ type Shift {
 
 type Mutation {
   createStaff(name: String!, img: String!, largeImg: String!): Staff
-
+updateStaff(_id: String! name: String, img: String, largeImg: String!): Staff
 createShift(type: String!, date: String!, start: String!, end: String!, allDay: Boolean!, title: String!): Shift
 deleteShift(_id: String!): Shift
 }

@@ -3,13 +3,43 @@ import PropTypes from 'prop-types';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import DropDown from './partials/DropDown';
+import MultipleSelect from './partials/MultipleSelect';
 import './ShiftSelection.css';
 import "react-datepicker/dist/react-datepicker.css";
-//import DatePicker from 'react-datepicker';
-import moment from 'moment';
 import {  DatePicker, TimePicker } from '@atlaskit/datetime-picker';
+//import type, { GroupType } from '../../../client/types';
+
+//: Array<GroupType> =
+const selectionOptions = [
+    
+    {
+        heading: 'Lead Staff',
+        items: [
+            { content: 'Allan Patel', value: 'Allan Patel' },
+            { content: 'Lisa Rios', value: 'Lisa Rios' },
+            { content: 'Joyce Holden', value: 'Joyce Holden' }
+        ],
+    },
+    {
+        heading: 'Staff',
+        items: [
+            { content: 'Allan Patel', value: 'Allan Patel' },
+            { content: 'Lisa Rios', value: 'Lisa Rios' },
+            { content: 'Joyce Holden', value: 'Joyce Holden' }
+        ],
+    },
+    {
+        heading: 'Staff',
+        items: [
+            { content: 'Allan Patel', value: 'Allan Patel' },
+            { content: 'Lisa Rios', value: 'Lisa Rios' },
+            { content: 'Joyce Holden', value: 'Joyce Holden' }
+        ],
+    }
+];
+
+
 
 const createShift = gql`
 mutation createShift($title: String!, $date: String!, $start: String!, $end: String!, $allDay: Boolean!, $type: String!) {
@@ -36,9 +66,7 @@ class ShiftSelection extends React.Component {
         super();
         this.state = {
             date: '',
-      
             start: '',
-            
             end: '',
             allDay: false,
             title: '',
@@ -46,100 +74,61 @@ class ShiftSelection extends React.Component {
         };
         
     }
-//this.handleChange = this.handleChange.bind(this);
+             submitForm = (e) => {
+                e.preventDefault();
+                const dateTime = this.state.date + ":" + this.state.start;
+                this.props.createShift({
+                    variables: this.state
+                }).catch(error => {
+                     console.log(error)
+                });
+             }
+                // .then(({ data }) => {
+                //     this.props.refetch()
+                 // })
 
-    // handleChange = e => {
-    //     //const { name, type, value } = e.target;
-    //     console.log(e.target);
-    //     // const { value, name } = e.target
-    //     // console.log('value, name', value, name);
-    //     // console.log(e.target);
-    //     //const val = type === 'number' ? parseFloat(value) : value;
-
-    //     // this.setState({ [name]: value });
-
-
-    // };
-
-    submitForm = (e) => {
-        e.preventDefault();
-const dateTime = this.state.date + ":" + this.state.start;
-
-        console.log('state', this.state);
-
-        this.props.createShift({
-            variables: this.state
-        }).catch(error => {
-            console.log(error)
-        });
-
-    }
-
-    // .then(({ data }) => {
-    //     this.props.refetch()
-    // })
-
-    handleChangeStaff = e => {
- const staff = e.target.value
-        // const { target: { name, value } } = event;
-        // this.setState(() => ({ [name]: value }))
-        this.setState({
-           title: staff
-        });
-    }
-    handleChangeDate = e => {
-const date = Date(e)
-
-
+            handleChangeStaff = e => {
+                const staff = e.target.value
+                this.setState({
+                    title: staff
+                });
+            }
+            handleChangeDate = e => {
+            const date = Date(e)
                this.setState({
                    date
                });
                console.log(this.state)
            }
-           handleChangeStartTime = time => {
-              // const date =  Date(this.state.date)
-               const hours = time.slice(0, 2)
-               console.log('hours', hours);
-               const minutes = time.slice(3, 5)
-               console.log('minutes', minutes);
-const dateTest = new Date(this.state.date)
-dateTest.setHours(hours);
-dateTest.setMinutes(minutes, 0);
-
-console.log(dateTest);
-              
+             handleChangeStartTime = time => {
+                const hours = time.slice(0, 2)
+                const minutes = time.slice(3, 5)
+                const dateTest = new Date(this.state.date)
+                dateTest.setHours(hours);
+                dateTest.setMinutes(minutes, 0);
                    this.setState({
                        start: dateTest
                    });
                }
-               handleChangeEndTime = time => {
-                //const date =  Date(this.state.date)
+            handleChangeEndTime = time => {
                 const hours = time.slice(0, 2)
-                console.log('hours', hours);
                 const minutes = time.slice(3, 5)
-                console.log('minutes', minutes);
- const dateTest = new Date(this.state.date)
- dateTest.setHours(hours);
- dateTest.setMinutes(minutes, 0);
-
- console.log(dateTest);
-              
+                const dateTest = new Date(this.state.date)
+                dateTest.setHours(hours);
+                dateTest.setMinutes(minutes, 0);
                     this.setState({
                         end: dateTest
                     });
                 }
             
-    handleTimeChange = (value) => {
-        console.log(value);
-        this.setState({
-            start: value
-        })
-    }
+                handleTimeChange = (value) => {
+                    this.setState({
+                    start: value
+                    })
+                }
 
     render() {
-
-
-const { classes } = this.props;
+        const { classes } = this.props;
 
         return (
             <form onSubmit={this.submitForm} className={classes.container} noValidate>
@@ -150,9 +139,8 @@ const { classes } = this.props;
       <DatePicker id="datepicker-1" name="date" onChange={this.handleChangeDate} />
 
                    <br/>
-
-      <TimePicker
-        id="start"
+        <TimePicker
+             id="start"
         onChange={this.handleChangeStartTime}
         selectProps={{ classNamePrefix: 'timepicker-select' }}
         times={["00:00", "00:15", 
@@ -203,11 +191,11 @@ const { classes } = this.props;
         "22:30", "22:45",
         "23:00", "23:15", 
         "23:30", "23:45"
-         ]}
-      />
-    <br />
-<TimePicker
-        id="end"
+                 ]}
+            />
+             <br />
+        <TimePicker
+             id="end"
         onChange={this.handleChangeEndTime}
         selectProps={{ classNamePrefix: 'timepicker-select' }}
         times={["00:00", "00:15", 
@@ -259,17 +247,22 @@ const { classes } = this.props;
         "23:00", "23:15", 
         "23:30", "23:45"
          ]}
-      />
-
+            />
                         <br />
                         <label htmlFor="staff" className="label">
                             Staff
     
                     <br />
+        <MultipleSelect
+            selectionOptions={selectionOptions}
+            placeholder="Choose Staff..."
+            label="Staff"
+            onChange={this.handleChangeStaff} 
+            />
                             <DropDown
                                 menuItems={["Lisa Rios", "Eric Patel", "Joyce Holden"]}
                                 name="staff"
-                                onChange={this.handleChangeStaff} />
+                                />
                         </label>
                         <br />
                         <br />
@@ -280,15 +273,16 @@ const { classes } = this.props;
             }
         }
         
-ShiftSelection.propTypes = {
+            ShiftSelection.propTypes = {
                     classes: PropTypes.object.isRequired,
             };
             
-            // export default withStyles(styles)(ShiftSelection);
-          
-            export default withStyles(styles)(graphql(createShift, {
+    export default withStyles(styles)(graphql(createShift, {
                 name: "createShift"
-            })(ShiftSelection));
+        })(ShiftSelection));
+
+      // export default withStyles(styles)(ShiftSelection);
+
 //<input
 // placeholder="Name..."
 // name="name"
@@ -304,3 +298,18 @@ className="date-selector"
 selected={this.state.date}
 onChange={this.handleChange}
 /> */}
+
+//this.handleChange = this.handleChange.bind(this);
+
+    // handleChange = e => {
+    //     //const { name, type, value } = e.target;
+    //     console.log(e.target);
+    //     // const { value, name } = e.target
+    //     // console.log('value, name', value, name);
+    //     // console.log(e.target);
+    //     //const val = type === 'number' ? parseFloat(value) : value;
+
+    //     // this.setState({ [name]: value });
+
+
+    // };

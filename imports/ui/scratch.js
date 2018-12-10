@@ -3,7 +3,7 @@
 //       name
 //       img
 //     }
-//}
+// }
 
 // mutation  {
 //     createStaff( 
@@ -19,5 +19,12 @@
 //       _id
 //     }
 
+
+//   }
+
+// mutation {
+//     deleteShift(_id: "9GZJoEBn6YiFH2ogA"){
+//    _id
+//     }
 
 //   }

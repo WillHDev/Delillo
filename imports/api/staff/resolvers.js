@@ -27,6 +27,21 @@ export default {
       })
       return Staff.findOne({ staffId })
     },
+    updateStaff(obj, { _id, name, img, largeImg }, ctx) {
+
+
+      const staffId = Staff.findByIdAndUpdate(
+        _id,
+        {
+          $set: {
+            name,
+            img,
+            largeImg
+          }
+        },
+        { new: true });
+      return Staff.findOne({ staffId })
+    },
     createShift(obj, { start, end, type, allDay, title, date }, ctx) {
       const shiftId = Shifts.insert({
         start, end, type, allDay, title, date

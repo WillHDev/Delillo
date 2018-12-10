@@ -71,29 +71,20 @@ const ktaffShifts =
 const ShiftDisplay = ({ loading, shifts, refetch }) => {
 
     if (loading) return null;
-    //console.log('sk', ktaffShifts);
-
     let staffShifts = [];
-    // console.log('shifts', shifts)
     shifts.map(shift => {
         delete shift.type, shift.__typename, shift._id;
         const start = moment(shift.start).format("MMMM D, YYYY HH:mm:ss");
-        console.log('start!!!!', start);
-        //const startFormat = start;
         const startFormat = new Date(start);
         shift.start = startFormat
-        console.log('startFormat', startFormat);
         const end = moment(shift.end).format("MMMM D, YYYY HH:mm:ss");
-        console.log('end!!!', end);
-        //const endFormat = end;
         const endFormat = new Date(end);
-        console.log('endFormat', endFormat);
         shift.end = endFormat
         return staffShifts.push(shift);
 
     })
 
-    //console.log(' staffShifts', staffShifts);
+
 
     //     <ul>
     //     {shifts.map(shift => {
