@@ -39,11 +39,12 @@ class Schedule extends Component {
         //     shift.end = moment(shift.end).format("MMMM D, YYYY HH:mm:ss");
         //     return shift;
         // })
+        let shiftDisplay;
+        shiftDisplay = staffShifts.map(shift => <h6 key={shift._id}>{shift.title} + {shift.start} + {shift.end}</h6>
+        )
         return (
             <div className="schedule-container" >
-                {staffShifts.map(shift => {
-                    return <h6 key={shift._id}>{shift.title} + {shift.start} + {shift.end}</h6>
-                })}
+                {shiftDisplay}
             </div>
         )
     }
