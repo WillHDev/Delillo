@@ -58,36 +58,42 @@ const ktaffShifts =
 
         },
         {
-            title: "Snoobo",
-            end: new Date('December 4, 2018 19:00:00'),
-            start: new Date('December 4, 2018 05:00:00'),
+            title: "Snoobo ONE",
+            end: new Date('December 12, 2018 19:00:00'),
+            start: new Date('December 12, 2018 05:00:00'),
             allDay: false,
 
-            date: "Tue Dec 04 2018 20:13:20 GMT-0500 (Eastern Standard Time)",
+
 
             type: "morning"
         }
-
     ]
 const ShiftDisplay = ({ loading, shifts, refetch }) => {
 
     if (loading) return null;
-    console.log('sk', ktaffShifts);
+    //console.log('sk', ktaffShifts);
 
     let staffShifts = [];
-    console.log('shifts', shifts)
+    // console.log('shifts', shifts)
     shifts.map(shift => {
+        delete shift.type, shift.__typename, shift._id;
         const start = moment(shift.start).format("MMMM D, YYYY HH:mm:ss");
+        console.log('start!!!!', start);
+        //const startFormat = start;
         const startFormat = new Date(start);
-        shift.start = startFormat.toString();
+        shift.start = startFormat
+        console.log('startFormat', startFormat);
         const end = moment(shift.end).format("MMMM D, YYYY HH:mm:ss");
+        console.log('end!!!', end);
+        //const endFormat = end;
         const endFormat = new Date(end);
-        shift.end = endFormat.toString();
-        staffShifts.push(shift);
-        return;
+        console.log('endFormat', endFormat);
+        shift.end = endFormat
+        return staffShifts.push(shift);
+
     })
 
-    console.log(' staffShifts', staffShifts);
+    //console.log(' staffShifts', staffShifts);
 
     //     <ul>
     //     {shifts.map(shift => {
@@ -96,7 +102,7 @@ const ShiftDisplay = ({ loading, shifts, refetch }) => {
     // </ul>
     return (
         <div >
-            <Schedule staffShifts={staffShifts} />
+            <Schedule staffShifts={staffShifts} realShifts={staffShifts} />
         </div>
     );
 };

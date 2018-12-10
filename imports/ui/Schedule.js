@@ -29,22 +29,41 @@ class Schedule extends Component {
         const date = "2018-12-04T19:00:31-05:00";
         //moment().format("MMMM D, YYYY, HH:mm:ss")
         const newDate = moment(date).format("MMMM D, YYYY HH:mm:ss");
-        console.log(newDate);
+        //console.log(newDate);
         // const date = Date("2018-12-04");
         // console.log(date);
         // let shifts;
-        const { staffShifts } = this.props;
+        const { staffShifts, realShifts } = this.props;
+        let shifts = [];
+        staffShifts.map(shift => {
+            let start = shift.start;
+            start = new Date(start);
+            shift.start = start;
+            let end = shift.end;
+            end = new Date(end);
+            shift.end = end;
+            return shifts.push(shift);
+        })
+        console.log('shifts^^^', shifts);
         // shifts = staffShifts.map(shift => {
         //     shift.start = moment(shift.start).format("MMMM D, YYYY HH:mm:ss");
         //     shift.end = moment(shift.end).format("MMMM D, YYYY HH:mm:ss");
         //     return shift;
         // })
-        let shiftDisplay;
-        shiftDisplay = staffShifts.map(shift => <h6 key={shift._id}>{shift.title} + {shift.start} + {shift.end}</h6>
-        )
+        // let shiftDisplay;
+        // shiftDisplay = staffShifts.map(shift => <h6 key={shift._id}>{shift.title} + {shift.start} + {shift.end}</h6>
+        // )
         return (
             <div className="schedule-container" >
-                {shiftDisplay}
+                <BigCalendar
+                    localizer={localizer}
+                    events={staffShifts}
+                    defaultView={BigCalendar.Views.WEEK}
+                    startAccessor="start"
+                    endAccessor="end"
+                    className="schedule"
+
+                />
             </div>
         )
     }
@@ -52,12 +71,3 @@ class Schedule extends Component {
 
 export default withRouter(Schedule);
 
-{/* <BigCalendar
-                    localizer={localizer}
-                    events={shifts}
-                    defaultView={BigCalendar.Views.WEEK}
-                    startAccessor="start"
-                    endAccessor="end"
-                    className="schedule"
-
-                /> */}
