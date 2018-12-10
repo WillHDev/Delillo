@@ -254,6 +254,7 @@ class ShiftSelection extends React.Component {
     
                     <br />
         <MultipleSelect
+        
             selectionOptions={selectionOptions}
             placeholder="Choose Staff..."
             label="Staff"
