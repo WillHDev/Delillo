@@ -37,8 +37,7 @@ const App = ({ loading, staff, refetch }) => {
     if (loading) return null;
     return (
         <div >
-            <StaffDisplayContainer staff={staff} />
-            <StaffForm refetch={refetch} />
+            <StaffDisplay staff={staff} />
         </div>
     );
 };

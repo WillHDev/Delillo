@@ -13,10 +13,10 @@ import ShiftDisplay from './ShiftDisplay';
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import StaffDisplay from './StaffDisplay';
+import StaffDisplayContainer from './StaffDisplayContainer';
 
 const shiftQuery = gql`
   {
-    
     shifts{
       _id
       title
@@ -30,73 +30,63 @@ const shiftQuery = gql`
   }
 `;
 
+const Index = ({ loading, shifts, refetch }) => {
 
-
-export default class Index extends Component {
-
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      sidebarOpen: false
-    };
-    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
-  };
-
-  onSetSidebarOpen(open) {
-    this.setState({ sidebarOpen: open });
-  }
-  render() {
-    return (
-      <div className="app-container">
-        <div className="header-card">
-          <div style={{ margin: '20px' }}>
-            <DropdownMenu
-              trigger="Menu"
-              triggerType="button"
-              shouldFlip={false}
-              position="right middle"
-              onOpenChange={e => console.log('dropdown opened', e)}
-            >
-              <DropdownItemGroup>
-                <DropdownItem href="/">Home</DropdownItem>
-                <DropdownItem href="/schedule">Schedule</DropdownItem>
-                <DropdownItem href="/shiftSelection">Add A Shift</DropdownItem>
-                <DropdownItem href="/addStaff">Add Staff</DropdownItem>
-              </DropdownItemGroup>
-            </DropdownMenu>
-          </div>
-
-
-
-          <h1 className="title" >Scoodle</h1>
-
-
-
+  if (loading) return null;
+  return (
+    <div className="app-container">
+      <div className="header-card">
+        <div style={{ margin: '20px' }}>
+          <DropdownMenu
+            trigger="Menu"
+            triggerType="button"
+            shouldFlip={false}
+            position="right middle"
+            onOpenChange={e => console.log('dropdown opened', e)}
+          >
+            <DropdownItemGroup>
+              <DropdownItem href="/">Home</DropdownItem>
+              <DropdownItem href="/schedule">Schedule</DropdownItem>
+              <DropdownItem href="/shiftSelection">Add A Shift</DropdownItem>
+              <DropdownItem href="/addStaff">Add Staff</DropdownItem>
+              <DropdownItem href="/shiftsPrototype">Shifts Prototype</DropdownItem>
+            </DropdownItemGroup>
+          </DropdownMenu>
         </div>
 
 
 
+        <h1 className="title" >Scoodle</h1>
 
-        <Router>
-          <>
-            <Route path="/" exact component={App} />
-            <Route path="/addStaff" exact component={AddStaff} />
-            <Route path="/schedule" exact component={ShiftDisplay} />
-            <Route path="/shiftSelection" exact component={ShiftSelectionContainer} />
-            <Route path="/timeSlots" exact component={Timeslots} />
 
-          </>
-        </Router>
+
       </div>
-    )
-  }
-}
 
-// <Route path="/shiftsPrototype" 
-//             exact 
-//             render={(props) => <StaffDisplay {...props} staff={staff} />} 
-//             />
+
+
+
+      <Router>
+        <>
+          <Route path="/" exact component={StaffDisplayContainer} />
+          <Route path="/addStaff" exact component={AddStaff} />
+          <Route path="/schedule" exact component={ShiftDisplay} />
+          <Route path="/shiftSelection" exact component={ShiftSelectionContainer} />
+          <Route path="/timeSlots" exact component={Timeslots} />
+          <Route path="/shiftsPrototype" exact component={App} />
+        </>
+      </Router>
+    </div>
+  )
+}
+export default graphql(shiftQuery, {
+  props: ({ data }) => ({ ...data })
+})(Index)
+
+// <Route path="/shiftsPrototype"
+// exact
+// render={(props) => <StaffDisplay {...props} staff={staff} />}
+// />
+// </>
 
 
 
