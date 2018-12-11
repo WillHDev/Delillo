@@ -10,6 +10,27 @@ import ShiftSelectionContainer from './ShiftSelectionContainer';
 import DropdownMenu, { DropdownItemGroup, DropdownItem, DropdownMenuStateless } from '@atlaskit/dropdown-menu';
 import Timeslots from './Timeslots';
 import ShiftDisplay from './ShiftDisplay';
+import gql from "graphql-tag";
+import { graphql } from "react-apollo";
+import StaffDisplay from './StaffDisplay';
+
+const shiftQuery = gql`
+  {
+    
+    shifts{
+      _id
+      title
+      date
+      allDay
+      start
+      end
+      type
+ 
+    }
+  }
+`;
+
+
 
 export default class Index extends Component {
 
@@ -64,12 +85,20 @@ export default class Index extends Component {
             <Route path="/schedule" exact component={ShiftDisplay} />
             <Route path="/shiftSelection" exact component={ShiftSelectionContainer} />
             <Route path="/timeSlots" exact component={Timeslots} />
+
           </>
         </Router>
       </div>
     )
   }
 }
+
+// <Route path="/shiftsPrototype" 
+//             exact 
+//             render={(props) => <StaffDisplay {...props} staff={staff} />} 
+//             />
+
+
 
 
 // export default withRouter(Index);

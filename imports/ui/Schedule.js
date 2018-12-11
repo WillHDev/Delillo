@@ -26,13 +26,7 @@ class Schedule extends Component {
 
 
     render() {
-        const date = "2018-12-04T19:00:31-05:00";
-        //moment().format("MMMM D, YYYY, HH:mm:ss")
-        const newDate = moment(date).format("MMMM D, YYYY HH:mm:ss");
-        //console.log(newDate);
-        // const date = Date("2018-12-04");
-        // console.log(date);
-        // let shifts;
+
         const { staffShifts, realShifts } = this.props;
         let shifts = [];
         staffShifts.map(shift => {
@@ -45,14 +39,7 @@ class Schedule extends Component {
             return shifts.push(shift);
         })
         console.log('shifts^^^', shifts);
-        // shifts = staffShifts.map(shift => {
-        //     shift.start = moment(shift.start).format("MMMM D, YYYY HH:mm:ss");
-        //     shift.end = moment(shift.end).format("MMMM D, YYYY HH:mm:ss");
-        //     return shift;
-        // })
-        // let shiftDisplay;
-        // shiftDisplay = staffShifts.map(shift => <h6 key={shift._id}>{shift.title} + {shift.start} + {shift.end}</h6>
-        // )
+
         return (
             <div className="schedule-container" >
                 <BigCalendar
@@ -71,3 +58,19 @@ class Schedule extends Component {
 
 export default withRouter(Schedule);
 
+// const date = "2018-12-04T19:00:31-05:00";
+// //moment().format("MMMM D, YYYY, HH:mm:ss")
+// const newDate = moment(date).format("MMMM D, YYYY HH:mm:ss");
+//console.log(newDate);
+// const date = Date("2018-12-04");
+// console.log(date);
+// let shifts;
+
+   // shifts = staffShifts.map(shift => {
+        //     shift.start = moment(shift.start).format("MMMM D, YYYY HH:mm:ss");
+        //     shift.end = moment(shift.end).format("MMMM D, YYYY HH:mm:ss");
+        //     return shift;
+        // })
+        // let shiftDisplay;
+        // shiftDisplay = staffShifts.map(shift => <h6 key={shift._id}>{shift.title} + {shift.start} + {shift.end}</h6>
+        // )

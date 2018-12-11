@@ -27,7 +27,7 @@ allDay
 start
 end
 type
- 
+ date
     }
   }
 `;
@@ -70,7 +70,9 @@ const ktaffShifts =
     ]
 const ShiftDisplay = ({ loading, shifts, refetch }) => {
 
+
     if (loading) return null;
+    //console.log('shifts!!!!!!', shifts);
     let staffShifts = [];
     shifts.map(shift => {
         delete shift.type, shift.__typename, shift._id;
