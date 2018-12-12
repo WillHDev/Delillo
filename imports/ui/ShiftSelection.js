@@ -8,6 +8,7 @@ import MultipleSelect from "./partials/MultipleSelect";
 import "./ShiftSelection.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { DatePicker, TimePicker } from "@atlaskit/datetime-picker";
+import Select from "@atlaskit/select";
 //import type, { GroupType } from '../../../client/types';
 
 //: Array<GroupType> =
@@ -105,8 +106,7 @@ class ShiftSelection extends React.Component {
   // .then(({ data }) => {
   //     this.props.refetch()
   // })
-  handleAddStaff = e => {
-    const staffAddition = e.target.value;
+  handleAddStaff = staffAddition => {
     this.setState(state => {
       const title = state.title.concat(staffAddition);
       //remove staffAddition from options array for susequent inputs
@@ -166,6 +166,10 @@ class ShiftSelection extends React.Component {
   render() {
     const { classes } = this.props;
     const { staff } = this.state;
+    const options = [];
+    staff.map(item => {
+      return options.push({ label: item, value: item });
+    });
     return (
       <form onSubmit={this.submitForm} className={classes.container} noValidate>
         <fieldset>
@@ -389,29 +393,17 @@ class ShiftSelection extends React.Component {
           <label htmlFor="staff" className="label">
             Lead Staff
             <br />
-            <DropDown
-              menuItems={staff}
-              onChange={this.handleAddStaff}
-              name="lead-staff"
-            />
+            <Select options={options} onChange={this.handleAddStaff} />
           </label>
           <label htmlFor="staff" className="label">
             Support Coach 1
             <br />
-            <DropDown
-              menuItems={staff}
-              onChange={this.handleAddStaff}
-              name="staff-1"
-            />
+            <Select options={options} onChange={this.handleAddStaff} />
           </label>
           <label htmlFor="staff" className="label">
             Support Coach 2
             <br />
-            <DropDown
-              menuItems={staff}
-              onChange={this.handleAddStaff}
-              name="staff-2"
-            />
+            <Select options={options} onChange={this.handleAddStaff} />
           </label>
           <br />
           <br />
@@ -462,7 +454,7 @@ onChange={this.handleChange}
 }
 
 //this.handleChange = this.handleChange.bind(this);
-
+//
 // handleChange = e => {
 //     //const { name, type, value } = e.target;
 //     console.log(e.target);

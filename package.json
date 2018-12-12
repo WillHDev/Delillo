@@ -8,6 +8,7 @@
     "@atlaskit/datetime-picker": "^6.3.20",
     "@atlaskit/dropdown-menu": "^6.1.24",
     "@atlaskit/multi-select": "^11.0.12",
+    "@atlaskit/select": "^6.1.13",
     "@atlaskit/tag": "^6.1.2",
     "@babel/runtime": "^7.0.0",
     "@material-ui/core": "^3.6.1",
