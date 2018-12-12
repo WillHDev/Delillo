@@ -32,17 +32,14 @@ const server = new ApolloServer({
   })
 });
 
-//
-
 server.applyMiddleware({
   app: WebApp.connectHandlers,
   path: "/graphql"
 });
-
 
 WebApp.connectHandlers.use("/graphql", (req, res) => {
   if (req.method === "GET") {
     res.end();
   }
 });
-
+//

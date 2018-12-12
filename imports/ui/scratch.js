@@ -1,4 +1,4 @@
-// { 
+// {
 //     staff{
 //       name
 //       img
@@ -6,7 +6,7 @@
 // }
 
 // mutation  {
-//     createStaff( 
+//     createStaff(
 //     type: "morning"
 //       title: "Eric Patel"
 
@@ -19,7 +19,13 @@
 //       _id
 //     }
 
+//   }
 
+// {
+//     shifts{
+//      _id
+//       [title]
+//     }
 //   }
 
 // mutation {
@@ -28,3 +34,13 @@
 //     }
 
 //   }
+
+// mutation{
+//     updateStaff(_id: "nuB4AqZrYoiXnrFmm",
+//       name: "Joyce Holden",
+//       img: "https://res.cloudinary.com/dx7xupqyp/image/upload/v1543514755/uc6ivytz78m4gpomhyaj.jpg",
+//       largeImg: "https://res.cloudinary.com/dx7xupqyp/image/upload/c_scale,q_auto,w_800/v1543514755/uc6ivytz78m4gpomhyaj.jpg"
+//     ){
+//     name
+//   }
+// }

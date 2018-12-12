@@ -1,5 +1,5 @@
-import Staff from './staff'
-import Shifts from './shifts'
+import Staff from "./staff";
+import Shifts from "./shifts";
 // need fetch since find returns a cursor, a bunch of
 //things we dont need
 
@@ -7,15 +7,13 @@ import Shifts from './shifts'
 //   name: 'Test Res'
 // })
 
-
-
 export default {
   Query: {
     staff() {
-      return Staff.find({}).fetch()
+      return Staff.find({}).fetch();
     },
     shifts() {
-      return Shifts.find({}).fetch()
+      return Shifts.find({}).fetch();
     }
   },
   Mutation: {
@@ -24,12 +22,10 @@ export default {
         name,
         img,
         largeImg
-      })
-      return Staff.findOne({ staffId })
+      });
+      return Staff.findOne({ staffId });
     },
     updateStaff(obj, { _id, name, img, largeImg }, ctx) {
-
-
       const staffId = Staff.findByIdAndUpdate(
         _id,
         {
@@ -39,14 +35,20 @@ export default {
             largeImg
           }
         },
-        { new: true });
-      return Staff.findOne({ staffId })
+        { new: true }
+      );
+      return Staff.findOne({ staffId });
     },
     createShift(obj, { start, end, type, allDay, title, date }, ctx) {
       const shiftId = Shifts.insert({
-        start, end, type, allDay, title, date
-      })
-      return Shifts.findOne({ shiftId })
+        start,
+        end,
+        type,
+        allDay,
+        title,
+        date
+      });
+      return Shifts.findOne({ shiftId });
     }
     // deleteStaff(obj, { _id }, ctx) {
     //   const staff = Staff.findOne({ _id })
@@ -56,7 +58,6 @@ export default {
   }
 };
 
-
 //[
 //   { _id: "asbdjnk", name: "Important Read" },
 //   { _id: "asbdjnkdd", name: "Important Work" }
@@ -64,3 +65,4 @@ export default {
 
 // const res = Documents.find({}).fetch();
 // console.log(res)
+//

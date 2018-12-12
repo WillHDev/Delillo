@@ -41,7 +41,7 @@ const selectionOptions = [
 
 const createShift = gql`
   mutation createShift(
-    $title: String!
+    $title: [String]!
     $date: String!
     $start: String!
     $end: String!
@@ -87,7 +87,12 @@ class ShiftSelection extends React.Component {
   }
   submitForm = e => {
     e.preventDefault();
-    const dateTime = this.state.date + ":" + this.state.start;
+    //const dateTime = this.state.date + ":" + this.state.start;
+    // console.log("staff", typeof this.state.title[0]);
+    // let staffArray = [];
+    // this.state.title.map(staff => {
+    //   return staffArray.push(staff);
+    // });
     this.props
       .createShift({
         variables: {
@@ -108,15 +113,16 @@ class ShiftSelection extends React.Component {
   // })
   handleAddStaff = staffAddition => {
     this.setState(state => {
-      const title = state.title.concat(staffAddition);
+      const title = state.title.concat(staffAddition.value);
+
       //remove staffAddition from options array for susequent inputs
-      const staff = state.staff.filter(staff => staff !== staffAddition);
+      const staff = state.staff.filter(staff => staff !== staffAddition.value);
       return {
         title,
         staff
       };
     });
-    console.log("staff title", this.state.title);
+    console.log("staff title", this.state.title, this.state.staff);
   };
 
   //   handleChangeStaff = e => {
