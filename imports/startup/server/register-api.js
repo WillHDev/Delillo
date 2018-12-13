@@ -12,6 +12,7 @@ type Query {
   shifts: [Shift]
     }
 `;
+//
 
 const testResolvers = {
   Query: {
@@ -42,4 +43,5 @@ WebApp.connectHandlers.use("/graphql", (req, res) => {
     res.end();
   }
 });
+//
 //

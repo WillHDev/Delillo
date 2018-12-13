@@ -49,6 +49,13 @@ export default {
         date
       });
       return Shifts.findOne({ shiftId });
+    },
+    deleteShift(obj, { _id }, ctx) {
+      Shifts.remove({
+        _id
+      });
+      return "shift removed";
+      // return _id;
     }
     // deleteStaff(obj, { _id }, ctx) {
     //   const staff = Staff.findOne({ _id })
