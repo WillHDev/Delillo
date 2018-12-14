@@ -26,5 +26,5 @@ type Mutation {
     allDay: Boolean!
     title: [String]!
   ): Shift
-  deleteShift(_id: String!): Boolean
+  deleteShift(_id: String!): String
 }

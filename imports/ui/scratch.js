@@ -44,3 +44,34 @@
 //     name
 //   }
 // }
+
+{
+    "data": {
+      "shifts": [
+    
+        {
+          "_id": "qAhhXsJEdyiZ8NiwE",
+          "start": "2019-02-27T11:00:00.000Z"
+        },
+        {
+          "_id": "pFinzQnKWYLMYxnWN",
+          "start": "2019-02-27T19:30:00.000Z"
+        },
+        {
+          "_id": "YYjHZJCsaezEHCzod",
+          "start": "2019-02-28T02:00:00.000Z"
+        },
+        {
+          "_id": "aWJcsScxffk8ytcSd",
+          "start": "2019-02-27T11:00:00.000Z"
+        }
+      ]
+    }
+  }
+
+  mutation {
+    deleteShift(_id: "9GZJoEBn6YiFH2ogA")
+
+
+
+  }
