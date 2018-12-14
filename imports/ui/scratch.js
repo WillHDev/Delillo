@@ -5,6 +5,15 @@
 //     }
 // }
 
+
+shiftsByDate(obj, { date }, ctx) {
+  return Shifts.find({ date }).fetch();
+}
+
+
+
+
+
 // mutation  {
 //     createStaff(
 //     type: "morning"
@@ -44,6 +53,18 @@
 //     name
 //   }
 // }
+
+
+type Query {
+  shiftsbyDate(date: String!): [Shift]!
+}
+
+query{
+  shiftsByDate( date: "2019-02-28"){
+    start
+  }
+}
+
 
 {
     "data": {

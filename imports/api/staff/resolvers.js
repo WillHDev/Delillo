@@ -14,6 +14,9 @@ export default {
     },
     shifts() {
       return Shifts.find({}).fetch();
+    },
+    shiftsByDate(obj, { date }, ctx) {
+      return Shifts.find({ date }).fetch();
     }
   },
   Mutation: {

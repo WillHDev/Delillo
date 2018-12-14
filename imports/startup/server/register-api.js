@@ -10,9 +10,9 @@ type Query {
     hi: String
   staff: [Staff]
   shifts: [Shift]
+  shiftsByDate(date: String!): [Shift]
     }
 `;
-//
 
 const testResolvers = {
   Query: {
@@ -43,5 +43,4 @@ WebApp.connectHandlers.use("/graphql", (req, res) => {
     res.end();
   }
 });
-//
 //
