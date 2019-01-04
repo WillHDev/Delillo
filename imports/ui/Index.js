@@ -36,6 +36,7 @@ const shiftQuery = gql`
 
 const Index = ({ loading, shifts, refetch }) => {
   if (loading) return null;
+
   return (
     <div className="app-container">
       <div className="header-card">
@@ -65,7 +66,13 @@ const Index = ({ loading, shifts, refetch }) => {
 
       <Router>
         <>
-          <Route path="/" exact component={StaffDisplayContainer} />
+          <Route
+            path="/"
+            exact
+            render={props => (
+              <StaffDisplayContainer {...props} shifts={shifts} />
+            )}
+          />
           <Route path="/addStaff" exact component={AddStaff} />
           <Route path="/schedule" exact component={ShiftDisplay} />
           <Route

@@ -81,7 +81,7 @@ class ShiftSelection extends React.Component {
       end: "",
       allDay: false,
       title: [],
-      type: "morning",
+      type: "",
       staff: ["Lisa Rios", "Eric Patel", "Joyce Holden"]
     };
   }
@@ -111,6 +111,12 @@ class ShiftSelection extends React.Component {
   // .then(({ data }) => {
   //     this.props.refetch()
   // })
+
+  handleAddShiftType = type => {
+    this.setState({
+      type: type.value
+    });
+  };
   handleAddStaff = staffAddition => {
     this.setState(state => {
       const title = state.title.concat(staffAddition.value);
@@ -180,7 +186,20 @@ class ShiftSelection extends React.Component {
       <form onSubmit={this.submitForm} className={classes.container} noValidate>
         <fieldset>
           <h3>Choose a Support</h3>
-
+          <label htmlFor="staff" className="label">
+            Shift Type
+            <br />
+            <Select
+              options={[
+                { label: "Morning", value: "Morning" },
+                { label: "Afternoon", value: "Afternoon" },
+                { label: "Evening", value: "Evening" },
+                { label: "Overnight", value: "Overnight" }
+              ]}
+              onChange={this.handleAddShiftType}
+            />
+          </label>
+          <br />
           <DatePicker
             id="datepicker-1"
             name="date"
@@ -395,6 +414,7 @@ class ShiftSelection extends React.Component {
               "23:45"
             ]}
           />
+
           <br />
           <label htmlFor="staff" className="label">
             Lead Staff
