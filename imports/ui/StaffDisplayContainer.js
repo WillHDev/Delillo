@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { DatePicker } from "@atlaskit/datetime-picker";
 import moment from "moment";
 import ControlledDatePicker from "./partials/ControlledDatePicker";
+import StaffDisplayForSelectedDate from "./StaffDisplayForSelectedDate";
 
 class StaffDisplayContainer extends Component {
   state = {
@@ -24,6 +25,13 @@ class StaffDisplayContainer extends Component {
 
   render() {
     const { shifts } = this.props;
+    const selectedDate = this.state.date;
+    // const shiftsToDisplay = shifts;
+    // console.log("tag", shiftsToDisplay);
+    let shiftsToDisplay = [];
+    shiftsToDisplay = shifts.filter(shift => {
+      shift.date = selectedDate;
+    });
     console.log("shifts", shifts);
 
     return (
@@ -37,6 +45,7 @@ class StaffDisplayContainer extends Component {
             />
           )}
         </ControlledDatePicker>
+        <StaffDisplayForSelectedDate shifts={shifts} />
       </div>
     );
   }
